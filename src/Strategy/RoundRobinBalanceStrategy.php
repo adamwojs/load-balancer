@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace AdamWojs\LoadBalancer\Strategy;
 
-use AdamWojs\LoadBalancer\Host\HostCollection;
 use AdamWojs\LoadBalancer\Host\HostCollectionInterface;
 
 /**
@@ -27,9 +26,13 @@ class RoundRobinBalanceStrategy implements BalanceStrategyInterface
      */
     public function resolve(HostCollectionInterface $hosts)
     {
-        $result = $hosts[$this->index % $hosts->count()];
-        $this->index++;
+        if (!$hosts->isEmpty()) {
+            $result = $hosts[$this->index % $hosts->count()];
+            $this->index++;
 
-        return $result;
+            return $result;
+        }
+
+        return null;
     }
 }

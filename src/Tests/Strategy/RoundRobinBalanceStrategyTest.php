@@ -24,4 +24,10 @@ class RoundRobinBalanceStrategyTest extends TestCase
             }
         }
     }
+
+    public function testResolveOnEmptyHostCollection()
+    {
+        $strategy = new RoundRobinBalanceStrategy();
+        $this->assertNull($strategy->resolve(new HostCollection([])));
+    }
 }
