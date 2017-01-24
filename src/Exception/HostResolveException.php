@@ -16,6 +16,6 @@ class HostResolveException extends LoadBalancerException
      */
     public function __construct($message = "", $code = 0, \Exception $previous = null)
     {
-        parent::__construct("Unable to resolve host instance. " . $message);
+        parent::__construct("Unable to resolve host instance. " . $message, $code, $previous);
     }
 }
